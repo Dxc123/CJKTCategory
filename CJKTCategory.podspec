@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/Dxc123/CJKTCategory"
   
 
-  s s.license      = { :type => 'MIT', :file => 'LICENSE' }
+  s.license      = { :type => 'MIT', :file => 'LICENSE' }
   
 
   s.author             = { "Dxc123" => "daixingchuang@163.com" }
