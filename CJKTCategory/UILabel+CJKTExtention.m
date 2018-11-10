@@ -12,7 +12,7 @@
 /**
  根据字符串，字体，计算UILabel宽度
  */
-+ (CGFloat)getWidthWithTitle:(NSString *)title font:(UIFont *)font {
++ (CGFloat)cjkt_getWidthWithTitle:(NSString *)title font:(UIFont *)font {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1000, 0)];
     label.text = title;
     label.font = font;
@@ -24,7 +24,7 @@
 /**
  根据字符串，字体，宽度，计算UILabel高度
  */
-+ (CGFloat)getHeightByWidth:(CGFloat)width title:(NSString *)title font:(UIFont *)font
++ (CGFloat)cjkt_getHeightByWidth:(CGFloat)width title:(NSString *)title font:(UIFont *)font
 {
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 0)];

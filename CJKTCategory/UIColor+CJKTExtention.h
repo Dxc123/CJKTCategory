@@ -20,7 +20,7 @@
  @param B 蓝色
  @return uicolor对象
  */
-+ (UIColor *)colorWithRGB:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B;
++ (UIColor *)cjkt_colorWithRGB:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B;
 
 
 #pragma mark -- 将rgba转换成颜色
@@ -33,29 +33,33 @@
  @param alpha 透明度
  @return uicolor对象
  */
-+ (UIColor *)colorWithRGBWithAlpha:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B alpha:(CGFloat)alpha;
++ (UIColor *)cjkt_colorWithRGBWithAlpha:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B alpha:(CGFloat)alpha;
 
 
 #pragma mark -- 根据16进制数生成颜色
 /**
  根据16进制数生成颜色
  
- @param clrString 16进制
+ @param hexString 16进制
  @return uicolor对象
  */
-+ (UIColor *)uiColorFromString:(NSString *) clrString;
++ (UIColor *)cjkt_colorWithHexString:(NSString *) hexString;
 
 
 #pragma mark -- 根据16进制数生成颜色(带透明度)
 /**
  根据16进制数生成颜色
  
- @param clrString 16进制
+ @param hexString 16进制
  @param alpha 透明度
  @return uicolor对象
  */
-+ (UIColor *)uiColorFromString:(NSString *) clrString alpha:(double)alpha;
++ (UIColor *)cjkt_colorWithHexString:(NSString *) hexString alpha:(double)alpha;
 
-
+#pragma mark -- 产生一个随机色，大部分情况下用于测试
+/**
+ *  产生一个随机色，大部分情况下用于测试
+ */
++ (UIColor *)cjkt_randomColor;
 
 @end

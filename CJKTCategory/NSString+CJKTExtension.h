@@ -32,7 +32,7 @@ typedef NS_ENUM(NSInteger, CJKTCheckingType) {
  @param font 字体
  @return 字符串大小
  */
-- (CGSize)getSizeCalculateWithSize:(CGSize)size font:(UIFont *)font;
+- (CGSize)cjkt_getSizeCalculateWithSize:(CGSize)size font:(UIFont *)font;
 
 #pragma mark --   设置 富文本的行间距
 /**
@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, CJKTCheckingType) {
  @param lineSpace 行间距
  @return 富文本
  */
--(NSAttributedString*)getAttributedStringWithLineSpace:(CGFloat)lineSpace;
+-(NSAttributedString*)cjkt_getAttributedStringWithLineSpace:(CGFloat)lineSpace;
 
 #pragma mark --  设置富文本的高度（根据富文本的行间距、字体、宽度）
 /**
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, CJKTCheckingType) {
  @param lineSpace 行间距
  @return 富文本
  */
-- (CGSize)getAttributionHeightWithString:(NSString *)string lineSpace:(CGFloat)lineSpace font:(UIFont *)font width:(CGFloat)width;
+- (CGSize)cjkt_getAttributionHeightWithString:(NSString *)string lineSpace:(CGFloat)lineSpace font:(UIFont *)font width:(CGFloat)width;
 
 
 
@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, CJKTCheckingType) {
 /**
  验证手机号
  */
-+ (BOOL)checkPhoneTypeWithString:(NSString *)string checkingType:(CJKTCheckingType)type;
++ (BOOL)cjkt_checkPhoneTypeWithString:(NSString *)string checkingType:(CJKTCheckingType)type;
 
 
 

@@ -10,11 +10,12 @@
 #define CJKTCategory_h
 #import "UIImage+CJKTExtension.h"
 
-
 #import "NSString+CJKTExtension.h"
 
 #import "UIView+CJKTExtension.h"
 #import "UIView+Gradient.h"
+
+#import "UIViewController+CJKTExtension.h"
 
 #import "UIColor+CJKTExtention.h"
 

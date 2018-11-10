@@ -16,7 +16,13 @@ typedef enum : NSUInteger  {
     QYImagePositionStyleRight ,  // image在右，label在左
 } QYImagePositionStyle;
 
+//点击Block
 typedef void(^clickBlock)(UIButton *button);
+
+
+//倒计时回调Block
+
+typedef void(^QYCountdownCompletionBlock)(void);
 
 @interface UIButton (CJKTExtention)
 
@@ -54,6 +60,9 @@ typedef void(^clickBlock)(UIButton *button);
 
 
 
+
+
+
 #pragma mark -- 设置UIButton 图片和文字布局调整
 /**
  *  设置图片与文字样式
@@ -63,6 +72,8 @@ typedef void(^clickBlock)(UIButton *button);
  */
 - (void)QY_imagePositionStyle:(QYImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing;
 
+
+#pragma mark -- 设置图片与文字样式（推荐使用）
 /**
  *  设置图片与文字样式（推荐使用）
  *
@@ -89,13 +100,71 @@ typedef void(^clickBlock)(UIButton *button);
 
 
 
+#pragma mark --倒计时，s倒计
+/**
+ *倒计时，s倒计
+ */
+- (void)QY_countdownWithSec:(NSInteger)time;
+
+#pragma mark --倒计时，秒字倒计
+/**
+ *倒计时，秒字倒计
+ */
+- (void)QY_countdownWithSecond:(NSInteger)second;
+
+#pragma mark --倒计时，s倒计,带有回调
+/**
+ *倒计时，s倒计,带有回调
+ */
+- (void)QY_countdownWithSec:(NSInteger)sec completion:(QYCountdownCompletionBlock)block;
+
+#pragma mark --倒计时,秒字倒计，带有回调
+/**
+ *倒计时,秒字倒计，带有回调
+ */
+- (void)QY_countdownWithSecond:(NSInteger)second completion:(QYCountdownCompletionBlock)block;
+
+
+/**使用
+ 
+ //s倒计
+ [button QY_countdownWithSec:30];
+ 
+ //秒字倒计
+ [button QY_countdownWithSecond:31];
+ 
+ // s倒计,带有回调
+ [button QY_countdownWithSec:30 completion:^{
+ [button setTitle:@"重新获取" forState:(UIControlStateNormal)];
+ }];
+ 
+ //秒字倒计，带有回调
+ [button QY_countdownWithSecond:30 completion:^{
+ [button setTitle:@"重新获取" forState:(UIControlStateNormal)];
+ }];
+ */
 
 
 
+#pragma mark -- UIButton事件回调block
+//模仿的BlocksKit
+//本质就是利用category和runtime给UIButton添加了一个block属性，单击的时候回调这个block。
 
+/**
+ UIButton事件回调block
+ 
+ @param block 回调的block
+ @param controlEvents 回调block的事件
+ */
+- (void)cjkt__addButtonEventHandler:(void(^)(void))block forControlEvents:(UIControlEvents)controlEvents;
 
-
-
+/**
+ 使用：
+ [button qy_addEventHandler:^{
+ NSLog(@"单击了button");
+ } forControlEvents:UIControlEventTouchUpInside];
+ 
+ */
 
 
 

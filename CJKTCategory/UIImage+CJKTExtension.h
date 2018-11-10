@@ -37,22 +37,42 @@ typedef NS_ENUM(NSUInteger, GradientType) {
 
 
 #pragma mark --UIImage 指定宽度按比例缩放
-//UIImage指定宽度按比例缩放
-+(UIImage *) imageCompressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
+/**
+ UIImage指定宽度按比例缩放
+ */
++(UIImage *) cjkt_imageCompressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
 
 
 #pragma mark -- 生成渐变颜色UIImage的方法
-+ (UIImage *)gradientColorImageFromColors:(NSArray*)colors gradientType:(GradientType)gradientType imgSize:(CGSize)imgSize;
+/**
+  生成渐变颜色UIImage的方法
+ */
++ (UIImage *)cjkt_gradientColorImageFromColors:(NSArray*)colors gradientType:(GradientType)gradientType imgSize:(CGSize)imgSize;
 
 /**
  使用方法如下:
  UIColor *topleftColor = [UIColor colorWithRed:48/255.0f green:127/255.0f blue:202/255.0f alpha:1.0f];
  UIColor *bottomrightColor = [UIColor colorWithRed:35/255.0f green:195/255.0f blue:95/255.0f alpha:1.0f];
- UIImage *bgImg = [UIImage gradientColorImageFromColors:@[topleftColor, bottomrightColor] gradientType:GradientTypeUpleftToLowright imgSize:SCREEN_SIZE];
+ UIImage *bgImg = [UIImage cjkt_gradientColorImageFromColors:@[topleftColor, bottomrightColor] gradientType:GradientTypeUpleftToLowright imgSize:SCREEN_SIZE];
  
  self.view.backgroundColor = [UIColor colorWithPatternImage:CGSizeMake(100 ,100);];
  
  */
+
+
+#pragma mark -- 生成渐变颜色UIImage的方法
+/**
+ 通过IconFont的形式创建图片
+ * 例如 [UIImage cjkt_imageWithIconFontName:@"iconfont" fontSize:100 text:@"\U0000e603" color:[UIColor greenColor]]
+ 
+ @param iconFontName iconFont的name
+ @param fontSize 字体的大小
+ @param text 文本信息<unicode>
+ @param color 颜色
+ @return 创建的图片
+ */
++ (UIImage *)cjkt_imageWithIconFontName:(NSString *)iconFontName fontSize:(CGFloat)fontSize text:(NSString *)text color:(UIColor *)color;
+
 
 
 @end

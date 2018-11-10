@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  不同尺寸屏幕适配字体大小的方法
  */
-+(UIFont *)getCalculateSystemFontOfSize:(CGFloat)fontSize;
++(UIFont *)cjkt_getCalculateSystemFontOfSize:(CGFloat)fontSize;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -9,7 +9,7 @@
 #import "UIFont+CJKTExtension.h"
 
 @implementation UIFont (CJKTExtension)
-+(UIFont *)getCalculateSystemFontOfSize:(CGFloat)fontSize{
++(UIFont *)cjkt_getCalculateSystemFontOfSize:(CGFloat)fontSize{
     
     //根据屏幕尺寸判断的设备，然后字体设置为0.8倍
     

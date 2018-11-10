@@ -9,10 +9,18 @@
 #import <UIKit/UIKit.h>
 
 @interface UITextView (CJKTExtention)
+
+#pragma mark -- 添加UITextView占位字符
+@property (nonatomic, strong,readonly) UITextView *qy_placeHolderTextView;
+/**
+ 添加UITextView占位字符
+ */
+- (void)cjkt_addPlaceHolder:(NSString *)placeHolder;
+
 #pragma mark -- UITextView设置富文本某段文字的颜色
 /**
  UITextView设置富文本某段文字的颜色
  */
-- (NSMutableAttributedString *)setTextWithLinkAttribute:(NSString *)text withtextColor:(UIColor *)textcolor;
+- (NSMutableAttributedString *)cjkt_setTextWithLinkAttribute:(NSString *)text withtextColor:(UIColor *)textcolor;
 
 @end

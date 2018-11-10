@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIView (CJKTExtension)
-#pragma mark -- Frame坐标
+#pragma mark -- 快速设置控件frame
+//注意 view 与 view 之间互相计算时，需要保证处于同一个坐标系内
 /**  起点x坐标  */
 @property (nonatomic, assign) CGFloat x;
 /**  起点y坐标  */
@@ -36,19 +37,34 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGSize size;
 /**  origin */
 @property (nonatomic, assign) CGPoint origin;
+
+#pragma mark --  UIView绑定的点击事件回调block
+/**
+ *UIView绑定的事件回调block
+ *本质就是利用category和runtime给UIView添加了一个block属性，单击的时候回调这个block。
+ *使用：
+ [self.view cjkt_addViewTapped:^{
+ NSLog(@"单击了view");
+ }];
+ */
+
+- (void)cjkt_addViewTapped:(void(^_Nonnull)(void))tappedBlock;
+
+
+
 #pragma mark --  画圆角(贝塞尔曲线\避免离屏渲染)
 /**
  画圆角(贝塞尔曲线)
  @param radius 半径
  @param corners UIRectCorner 类型
  */
-- (void)drawCircleAngle:(CGFloat)radius corners:(UIRectCorner)corners;
+- (void)cjkt_drawCircleAngle:(CGFloat)radius corners:(UIRectCorner)corners;
 
 #pragma mark -- 获取当前View的控制器对象
 /**
  获取当前View的控制器对象
  */
--(UIViewController *)getCurrentViewController;
+-(UIViewController *)cjkt_getCurrentViewController;
 
 @end
 

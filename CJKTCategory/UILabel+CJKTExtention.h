@@ -15,13 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  根据字符串，字体，计算UILabel宽度
  */
-+ (CGFloat)getWidthWithTitle:(NSString *)title font:(UIFont *)font;
++ (CGFloat)cjkt_getWidthWithTitle:(NSString *)title font:(UIFont *)font;
 
 #pragma mark --根据字符串，字体，宽度，计算UILabel高度
 /**
  根据字符串，字体，宽度，计算UILabel高度
  */
-+ (CGFloat)getHeightByWidth:(CGFloat)width title:(NSString *)title font:(UIFont*)font;
++ (CGFloat)cjkt_getHeightByWidth:(CGFloat)width title:(NSString *)title font:(UIFont*)font;
 
 @end
 

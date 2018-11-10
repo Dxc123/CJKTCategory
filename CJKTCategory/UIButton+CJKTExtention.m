@@ -15,8 +15,17 @@ static const char * kHitEdgeInsets = "hitEdgeInsets";
 static const char * kHitScale = "hitScale";
 static const char * kHitWidthScale = "hitWidthScale";
 static const char * kHitHeightScale = "hitHeightScale";
-
+//定义Block
+typedef void(^QY_ButtonEventsBlock)(void);
+@interface UIButton ()
+/** 事件回调的block */
+@property (nonatomic, copy) QY_ButtonEventsBlock qy_buttonEventsBlock;
+@end
 @implementation UIButton (CJKTExtention)
+//------- 添加属性 -------//
+static void *qy_buttonEventsBlockKey = &qy_buttonEventsBlockKey;
+
+
 
 - (void)verticalImageAndTitle:(CGFloat)spacing
 {
@@ -194,7 +203,7 @@ static const char * kHitHeightScale = "hitHeightScale";
     }
 }
 
-
+#pragma mark -- 设置图片与文字样式（推荐使用）
 /**
  *  设置图片与文字样式（推荐使用）
  *
@@ -246,6 +255,133 @@ static const char * kHitHeightScale = "hitHeightScale";
         self.titleEdgeInsets = UIEdgeInsetsMake(0, - imageW, imageH + spacing, 0);
     }
 }
+
+
+#pragma mark --倒计时，s倒计
+- (void)QY_countdownWithSec:(NSInteger)sec {
+    __block NSInteger tempSecond = sec;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        if (tempSecond <= 1) {
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.enabled = YES;
+                [self setTitle:@"获取验证码" forState:UIControlStateNormal];
+            });
+        } else {
+            tempSecond--;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.enabled = NO;
+                [self setTitle:[NSString stringWithFormat:@"%lds", (long)tempSecond] forState:UIControlStateNormal];
+            });
+        }
+    });
+    dispatch_resume(timer);
+}
+
+#pragma mark --倒计时，秒字倒计
+- (void)QY_countdownWithSecond:(NSInteger)second {
+    __block NSInteger tempSecond = second;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        if (tempSecond <= 1) {
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.enabled = YES;
+                [self setTitle:@"获取验证码" forState:UIControlStateNormal];
+            });
+        } else {
+            tempSecond--;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.enabled = NO;
+                [self setTitle:[NSString stringWithFormat:@"%ld秒", (long)tempSecond] forState:UIControlStateNormal];
+            });
+        }
+    });
+    dispatch_resume(timer);
+}
+
+#pragma mark --倒计时，s倒计,带有回调
+- (void)QY_countdownWithSec:(NSInteger)sec completion:(QYCountdownCompletionBlock)block {
+    __block NSInteger tempSecond = sec;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        if (tempSecond <= 1) {
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.enabled = YES;
+                block();
+            });
+        } else {
+            tempSecond--;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.enabled = NO;
+                [self setTitle:[NSString stringWithFormat:@"%lds", (long)tempSecond] forState:UIControlStateNormal];
+            });
+        }
+    });
+    dispatch_resume(timer);
+}
+
+#pragma mark --倒计时,秒字倒计，带有回调
+- (void)QY_countdownWithSecond:(NSInteger)second completion:(QYCountdownCompletionBlock)block {
+    __block NSInteger tempSecond = second;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(timer, ^{
+        if (tempSecond <= 1) {
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.enabled = YES;
+                block();
+            });
+        } else {
+            tempSecond--;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.enabled = NO;
+                [self setTitle:[NSString stringWithFormat:@"%ld秒", (long)tempSecond] forState:UIControlStateNormal];
+            });
+        }
+    });
+    dispatch_resume(timer);
+}
+
+
+
+
+#pragma mark -- UIButton事件回调block
+
+- (QY_ButtonEventsBlock)cq_buttonEventsBlock {
+    return objc_getAssociatedObject(self, &qy_buttonEventsBlockKey);
+}
+
+- (void)setQy_buttonEventsBlock:(QY_ButtonEventsBlock)qy_buttonEventsBlock {
+    objc_setAssociatedObject(self, &qy_buttonEventsBlockKey, qy_buttonEventsBlock, OBJC_ASSOCIATION_COPY);
+}
+
+/**
+ 给按钮绑定事件回调block
+ 
+ @param block 回调的block
+ @param controlEvents 回调block的事件
+ */
+- (void)cjkt__addButtonEventHandler:(void (^)(void))block forControlEvents:(UIControlEvents)controlEvents {
+    self.qy_buttonEventsBlock = block;
+    [self addTarget:self action:@selector(qy_blcokButtonClicked) forControlEvents:controlEvents];
+}
+
+// 按钮点击
+- (void)qy_blcokButtonClicked {
+    !self.qy_buttonEventsBlock ?: self.qy_buttonEventsBlock();
+}
+
 
 
 

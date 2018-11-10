@@ -7,8 +7,16 @@
 //
 
 #import "UIView+CJKTExtension.h"
-
+#import <objc/runtime.h>
+//定义
+typedef void(^QY_ViewTappedBlock)(void);
+@interface UIView ()
+/** 单击手势事件回调的block */
+@property (nonatomic, copy) QY_ViewTappedBlock qy_viewTappedBlock;
+@end
 @implementation UIView (CJKTExtension)
+//------- 添加属性 -------//
+static void *qy_viewTappedBlockKey = &qy_viewTappedBlockKey;
 #pragma mark -- Frame坐标
 - (void)setX:(CGFloat)x {
     CGRect frame = self.frame;
@@ -131,8 +139,32 @@
     self.frame = frame;
 }
 
+#pragma mark - UIView绑定的事件回调block
+
+- (QY_ViewTappedBlock)qy_viewTappedBlock {
+    return objc_getAssociatedObject(self, &qy_viewTappedBlockKey);
+}
+
+//
+
+- (void)setQy_viewTappedBlock:(QY_ViewTappedBlock)qy_viewTappedBlock {
+    objc_setAssociatedObject(self, &qy_viewTappedBlockKey, qy_viewTappedBlock, OBJC_ASSOCIATION_COPY);
+}
+- (void)cjkt_addViewTapped:(void(^)(void))tappedBlock {
+    self.qy_viewTappedBlock = tappedBlock;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped)];
+    [self addGestureRecognizer:tapGesture];
+}
+
+// 单击view
+- (void)viewTapped {
+    !self.qy_viewTappedBlock ?: self.qy_viewTappedBlock();
+}
+
+
+
 #pragma mark --  画圆角(贝塞尔曲线)
-- (void)drawCircleAngle:(CGFloat)radius corners:(UIRectCorner)corners {
+- (void)cjkt_drawCircleAngle:(CGFloat)radius corners:(UIRectCorner)corners {
     
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
     
@@ -149,7 +181,7 @@
 #pragma mark -- 获取当前View的控制器对象
 
 /** 获取当前View的控制器对象 */
--(UIViewController *)getCurrentViewController{
+-(UIViewController *)cjkt_getCurrentViewController{
     UIResponder *next = [self nextResponder];
     do {
         if ([next isKindOfClass:[UIViewController class]]) {

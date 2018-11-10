@@ -10,45 +10,45 @@
 
 @implementation UIColor (CJKTExtention)
 
-+ (UIColor *)colorWithRGBWithAlpha:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B alpha:(CGFloat)alpha {
++ (UIColor *)cjkt_colorWithRGBWithAlpha:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B alpha:(CGFloat)alpha {
     
     return [UIColor colorWithRed:R / 255.0f green:G / 255.0f blue:B / 255.0f alpha:alpha];
     
 }
 
-+ (UIColor *)colorWithRGB:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B {
++ (UIColor *)cjkt_colorWithRGB:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B {
     
-    return [self colorWithRGBWithAlpha:R green:G blue:B alpha:1.0f];
+    return [self cjkt_colorWithRGBWithAlpha:R green:G blue:B alpha:1.0f];
     
 }
 
 //例:@"#eef4f4"得到UIColor
-+ (UIColor *)uiColorFromString:(NSString *) clrString
++ (UIColor *)cjkt_colorWithHexString:(NSString *) hexString
 {
     
-    return [self uiColorFromString:clrString alpha:1.0];
+    return [self cjkt_colorWithHexString:hexString alpha:1.0];
     
 }
 
-+ (UIColor *)uiColorFromString:(NSString *)clrString alpha:(double)alpha
++ (UIColor *)cjkt_colorWithHexString:(NSString *)hexString alpha:(double)alpha
 {
     
-    if ([clrString length] == 0) {
+    if ([hexString length] == 0) {
         
         return [UIColor clearColor];
         
     }
     
-    if ( [clrString caseInsensitiveCompare:@"clear"] == NSOrderedSame) {
+    if ( [hexString caseInsensitiveCompare:@"clear"] == NSOrderedSame) {
         
         return [UIColor clearColor];
         
     }
     
-    if([clrString characterAtIndex:0] == 0x0023 && [clrString length]<8)
+    if([hexString characterAtIndex:0] == 0x0023 && [hexString length]<8)
     {
         
-        const char * strBuf= [clrString UTF8String];
+        const char * strBuf= [hexString UTF8String];
         
         NSInteger iColor = strtol((strBuf+1), NULL, 16);
         
@@ -69,5 +69,11 @@
     
 }
 
-
+#pragma mark -- 产生一个随机色，大部分情况下用于测试
++ (UIColor *)cjkt_randomColor{
+    CGFloat red = ( arc4random() % 255 / 255.0 );
+    CGFloat green = ( arc4random() % 255 / 255.0 );
+    CGFloat blue = ( arc4random() % 255 / 255.0 );
+    return [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+}
 @end
