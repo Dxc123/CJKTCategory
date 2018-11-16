@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C03519FC21966E6E00D1C6F0 /* UIViewController+CJKTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C03519FB21966E6E00D1C6F0 /* UIViewController+CJKTExtension.m */; };
+		C09DC95E219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = C09DC95C219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m */; };
+		C09DC961219EC478005ABDFF /* UITextField+CJKTInputLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = C09DC960219EC478005ABDFF /* UITextField+CJKTInputLimit.m */; };
 		C0F85E932195C624003C6687 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85E922195C624003C6687 /* AppDelegate.m */; };
 		C0F85E962195C624003C6687 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85E952195C624003C6687 /* ViewController.m */; };
 		C0F85E992195C624003C6687 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F85E972195C624003C6687 /* Main.storyboard */; };
@@ -28,6 +30,10 @@
 /* Begin PBXFileReference section */
 		C03519FA21966E6E00D1C6F0 /* UIViewController+CJKTExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CJKTExtension.h"; sourceTree = "<group>"; };
 		C03519FB21966E6E00D1C6F0 /* UIViewController+CJKTExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CJKTExtension.m"; sourceTree = "<group>"; };
+		C09DC95C219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CJKTInputLimit.m"; sourceTree = "<group>"; };
+		C09DC95D219EC2D8005ABDFF /* UITextView+CJKTInputLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+CJKTInputLimit.h"; sourceTree = "<group>"; };
+		C09DC95F219EC478005ABDFF /* UITextField+CJKTInputLimit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+CJKTInputLimit.h"; sourceTree = "<group>"; };
+		C09DC960219EC478005ABDFF /* UITextField+CJKTInputLimit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+CJKTInputLimit.m"; sourceTree = "<group>"; };
 		C0F85E8E2195C624003C6687 /* CJKTCategoryExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CJKTCategoryExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F85E912195C624003C6687 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C0F85E922195C624003C6687 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -123,8 +129,12 @@
 				C0F85EAB2195CB28003C6687 /* UILabel+CJKTExtention.m */,
 				C0F85EB62195CB28003C6687 /* UIImage+CJKTExtension.h */,
 				C0F85EAF2195CB28003C6687 /* UIImage+CJKTExtension.m */,
+				C09DC95F219EC478005ABDFF /* UITextField+CJKTInputLimit.h */,
+				C09DC960219EC478005ABDFF /* UITextField+CJKTInputLimit.m */,
 				C0F85EB02195CB28003C6687 /* UITextView+CJKTExtention.h */,
 				C0F85EB72195CB28003C6687 /* UITextView+CJKTExtention.m */,
+				C09DC95D219EC2D8005ABDFF /* UITextView+CJKTInputLimit.h */,
+				C09DC95C219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m */,
 				C0F85EB92195CB28003C6687 /* UIButton+CJKTExtention.h */,
 				C0F85EAC2195CB28003C6687 /* UIButton+CJKTExtention.m */,
 			);
@@ -211,8 +221,10 @@
 				C0F85EC22195CB28003C6687 /* UIView+Gradient.m in Sources */,
 				C0F85EBE2195CB28003C6687 /* UIButton+CJKTExtention.m in Sources */,
 				C0F85EBB2195CB28003C6687 /* UIFont+CJKTExtension.m in Sources */,
+				C09DC961219EC478005ABDFF /* UITextField+CJKTInputLimit.m in Sources */,
 				C03519FC21966E6E00D1C6F0 /* UIViewController+CJKTExtension.m in Sources */,
 				C0F85EBF2195CB28003C6687 /* UIView+CJKTExtension.m in Sources */,
+				C09DC95E219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m in Sources */,
 				C0F85E932195C624003C6687 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 static const char *qy_placeHolderTextView = "qy_placeHolderTextView";
-
+static const void *QYTextViewInputLimitMaxLength = &QYTextViewInputLimitMaxLength;
 @implementation UITextView (CJKTExtention)
 
 #pragma mark -- 添加UITextView占位字符

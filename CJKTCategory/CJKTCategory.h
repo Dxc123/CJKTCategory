@@ -26,4 +26,5 @@
 #import "UIButton+CJKTExtention.h"
 
 #import "UITextView+CJKTExtention.h"
+#import "UITextView+CJKTInputLimit.h"
 #endif /* CJKTCategory_h */
