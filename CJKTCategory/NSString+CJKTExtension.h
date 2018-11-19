@@ -24,42 +24,120 @@ typedef NS_ENUM(NSInteger, CJKTCheckingType) {
 
 @interface NSString (CJKTExtension)
 
+
+#pragma mark --  验证字符串的类型（手机号、邮箱、验证码、密码等）
+
+/**
+ 验证手机号
+
+ @param string 字符串
+ @param type 类型
+ @return 返回是、否
+ */
++ (BOOL)cjkt_checkStringTypeWithString:(NSString *)string checkingType:(CJKTCheckingType)type;
+
+
 #pragma mark --   计算普通文本 CGSize
 /**
  计算普通文本 CGSize
- 
  @param size 限定最大大小
  @param font 字体
  @return 字符串大小
  */
 - (CGSize)cjkt_getSizeCalculateWithSize:(CGSize)size font:(UIFont *)font;
 
-#pragma mark --   设置 富文本的行间距
-/**
- 设置 富文本的行间距
- 
- @param lineSpace 行间距
- @return 富文本
- */
--(NSAttributedString*)cjkt_getAttributedStringWithLineSpace:(CGFloat)lineSpace;
 
 #pragma mark --  设置富文本的高度（根据富文本的行间距、字体、宽度）
+
 /**
  设置富文本的高度（根据富文本的行间距、字体、宽度）
- 
+ @param string 需要改变的字符串
  @param lineSpace 行间距
- @return 富文本
+ @param font 字体大小
+ @param width 宽度
+ @return 生成的富文本
  */
 - (CGSize)cjkt_getAttributionHeightWithString:(NSString *)string lineSpace:(CGFloat)lineSpace font:(UIFont *)font width:(CGFloat)width;
 
 
 
-#pragma mark --  验证手机号
+#pragma mark --  11.19
+#pragma mark --  整句文本设置删除线
 /**
- 验证手机号
+ 整句文本设置删除线
  */
-+ (BOOL)cjkt_checkPhoneTypeWithString:(NSString *)string checkingType:(CJKTCheckingType)type;
++ (NSMutableAttributedString *)cjkt_setDeleteLineWith:(NSString *)string deleteLineColor:(UIColor *)lineColor font:(UIFont *)font;
+
+#pragma mark -- 整句文本中某些文字设置删除线
+/**
+ 整句文本中某些文字设置删除线
+ */
+
+/**例如
+ deleteLab.text = @"￥100喔喔是按部就班不能看你千千万";
+  NSMutableAttributedString *attritu = [NSString cjkt_setDeleteLineWith:deleteLab.text deleteLineColor:[UIColor lightGrayColor] font:[UIFont systemFontOfSize:16.f] SubStringArray:@[@"按部就班",@"千千万"]];
+  [deleteLab setAttributedText:attritu];
+ */
++ (NSMutableAttributedString *)cjkt_setDeleteLineWith:(NSString *)string deleteLineColor:(UIColor *)lineColor font:(UIFont *)font SubStringArray:(NSArray *)subArray;
+
+#pragma mark -- 整句文本设置下划线
+/**
+ 整句文本设置下划线
+ */
++ (NSMutableAttributedString *)cjkt_setUnderLineWith:(NSString *)string underLineColor:(UIColor *)lineColor font:(UIFont *)font;
+
+#pragma mark --  整句文本的某些文字设置下划线
+/**
+ 整句文本的某些文字设置下划线
+ */
++ (NSMutableAttributedString *)cjkt_setUnderLineWith:(NSString *)string underLineColor:(UIColor *)lineColor font:(UIFont *)font SubStringArray:(NSArray *)subArray;
+
+#pragma mark --  设置文本中的某些字的颜色
+/**
+ *  设置文本中的某些字的颜色
+ *
+ *  @param color    需要改变成的颜色
+ *  @param totalStr 总的字符串
+ *  @param subArray 需要改变颜色的文字数组
+ *
+ *  @return 生成的富文本
+ */
++ (NSMutableAttributedString *)cjkt_setCorlorWithColor:(UIColor *)color TotalString:(NSString *)totalStr SubStringArray:(NSArray *)subArray;
+
+
+#pragma mark --   设置文本的某些文字的颜色以及其字体
+/**
+ *  设置文本的某些文字的颜色以及其字体
+ *
+ *  @param font        设置的字体
+ *  @param color       颜色
+ *  @param totalString 总的字符串
+ *  @param subArray    想要变色的字符数组
+ *
+ *  @return 生成的富文本
+ */
++ (NSMutableAttributedString *)cjkt_setColorAndFont:(UIFont *)font Color:(UIColor *)color TotalString:(NSString *)totalString SubStringArray:(NSArray *)subArray;
 
 
 
+#pragma mark --   设置富文本的行间距
+/**
+ 设置 富文本的行间距
+ @param lineSpace 行间距
+ @return 富文本
+ */
+-(NSAttributedString*)cjkt_setAttributedStringWithLineSpace:(CGFloat)lineSpace;
+
+
+#pragma mark --   设置文本的行间距和字间距
+/**
+ *  设置文本的行间距和字间距
+ *
+ *  @param totalString 需要改变的字符串
+ *  @param lineSpace   行间距
+ *  @param textSpace   字间距
+ *
+ *  @return 生成的富文本
+ */
++ (NSMutableAttributedString *)cjkt_setLineAndTextSpaceWithTotalString:(NSString *)totalString LineSpace:(CGFloat)lineSpace textSpace:(CGFloat)textSpace;
 @end
