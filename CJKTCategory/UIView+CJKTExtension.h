@@ -14,29 +14,29 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark -- 快速设置控件frame
 //注意 view 与 view 之间互相计算时，需要保证处于同一个坐标系内
 /**  起点x坐标  */
-@property (nonatomic, assign) CGFloat x;
+@property (nonatomic, assign) CGFloat cjkt_x;
 /**  起点y坐标  */
-@property (nonatomic, assign) CGFloat y;
+@property (nonatomic, assign) CGFloat cjkt_y;
 /**  中心点x坐标  */
-@property (nonatomic, assign) CGFloat centerX;
+@property (nonatomic, assign) CGFloat cjkt_centerX;
 /**  中心点y坐标  */
-@property (nonatomic, assign) CGFloat centerY;
+@property (nonatomic, assign) CGFloat cjkt_centerY;
 /**  宽度  */
-@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat cjkt_width;
 /**  高度  */
-@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGFloat cjkt_height;
 /**  顶部  */
-@property (nonatomic, assign) CGFloat top;
+@property (nonatomic, assign) CGFloat cjkt_top;
 /**  底部  */
-@property (nonatomic, assign) CGFloat bottom;
+@property (nonatomic, assign) CGFloat cjkt_bottom;
 /**  左边  */
-@property (nonatomic, assign) CGFloat left;
+@property (nonatomic, assign) CGFloat cjkt_left;
 /**  右边  */
-@property (nonatomic, assign) CGFloat right;
+@property (nonatomic, assign) CGFloat cjkt_right;
 /**  size  */
-@property (nonatomic, assign) CGSize size;
+@property (nonatomic, assign) CGSize  cjkt_size;
 /**  origin */
-@property (nonatomic, assign) CGPoint origin;
+@property (nonatomic, assign) CGPoint cjkt_origin;
 
 #pragma mark --  UIView绑定的点击事件回调block
 /**

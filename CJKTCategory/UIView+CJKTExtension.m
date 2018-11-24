@@ -9,156 +9,154 @@
 #import "UIView+CJKTExtension.h"
 #import <objc/runtime.h>
 //定义
-typedef void(^QY_ViewTappedBlock)(void);
+typedef void(^cjkt_ViewTappedBlock)(void);
 @interface UIView ()
 /** 单击手势事件回调的block */
-@property (nonatomic, copy) QY_ViewTappedBlock qy_viewTappedBlock;
+@property (nonatomic, copy) cjkt_ViewTappedBlock qy_viewTappedBlock;
 @end
 @implementation UIView (CJKTExtension)
 //------- 添加属性 -------//
-static void *qy_viewTappedBlockKey = &qy_viewTappedBlockKey;
+static void *cjkt_viewTappedBlockKey = &cjkt_viewTappedBlockKey;
 #pragma mark -- Frame坐标
-- (void)setX:(CGFloat)x {
+- (void)setCjkt_x:(CGFloat)cjkt_x{
     CGRect frame = self.frame;
-    frame.origin.x = x;
+    frame.origin.x = cjkt_x;
     self.frame = frame;
 }
 
-- (void)setY:(CGFloat)y {
+- (void)setCjkt_y:(CGFloat)cjkt_y {
     CGRect frame = self.frame;
-    frame.origin.y = y;
+    frame.origin.y = cjkt_y;
     self.frame = frame;
 }
 
-- (CGFloat)x {
+- (CGFloat)cjkt_x {
     return self.frame.origin.x;
 }
 
-- (CGFloat)y {
+- (CGFloat)cjkt_y {
     return self.frame.origin.y;
 }
 
-- (void)setCenterX:(CGFloat)centerX {
+- (void)setCjkt_centerX:(CGFloat)cjkt_centerX {
     
     CGPoint center = self.center;
-    center.x = centerX;
+    center.x = cjkt_centerX;
     self.center = center;
     
 }
 
-- (CGFloat)centerX {
+- (CGFloat)cjkt_centerX {
     return self.center.x;
 }
 
-- (void)setCenterY:(CGFloat)centerY{
+- (void)setCjkt_centerY:(CGFloat)cjkt_centerY{
     CGPoint center = self.center;
-    center.y = centerY;
+    center.y = cjkt_centerY;
     self.center = center;
 }
 
-- (CGFloat)centerY {
+- (CGFloat)cjkt_centerY {
     return self.center.y;
 }
 
-- (void)setWidth:(CGFloat)width {
+- (void)setCjkt_width:(CGFloat)cjkt_width {
     CGRect frame = self.frame;
-    frame.size.width = width;
+    frame.size.width = cjkt_width;
     self.frame = frame;
 }
 
-- (void)setHeight:(CGFloat)height {
+- (void)setCjkt_height:(CGFloat)cjkt_height {
     CGRect frame = self.frame;
-    frame.size.height = height;
+    frame.size.height = cjkt_height;
     self.frame = frame;
 }
 
-- (CGFloat)height {
+- (CGFloat)cjkt_height {
     return self.frame.size.height;
 }
 
-- (CGFloat)width {
+- (CGFloat)cjkt_width {
     return self.frame.size.width;
 }
 
-- (void)setSize:(CGSize)size {
+- (void)setCjkt_size:(CGSize)cjkt_size {
     CGRect frame = self.frame;
-    frame.size = size;
+    frame.size = cjkt_size;
     self.frame = frame;
 }
 
-- (CGSize)size {
+- (CGSize)cjkt_size {
     return self.frame.size;
 }
 
-- (void)setOrigin:(CGPoint)origin {
+- (void)setCjkt_origin:(CGPoint)cjkt_origin{
     CGRect frame = self.frame;
-    frame.origin = origin;
+    frame.origin = cjkt_origin;
     self.frame = frame;
 }
 
-- (CGPoint)origin {
+- (CGPoint)cjkt_origin {
     return self.frame.origin;
 }
-- (CGFloat)top {
+
+- (void)setCjkt_top:(CGFloat)cjkt_top {
+    CGRect frame = self.frame;
+    frame.origin.y = cjkt_top;
+    self.frame = frame;
+}
+- (CGFloat)cjkt_top {
     return self.frame.origin.y;
 }
 
-- (void)setTop:(CGFloat)top {
+
+- (void)setCjkt_left:(CGFloat)cjkt_left{
     CGRect frame = self.frame;
-    frame.origin.y = top;
+    frame.origin.x = cjkt_left;
     self.frame = frame;
 }
-
-- (CGFloat)left {
+- (CGFloat)cjkt_left {
     return self.frame.origin.x;
 }
 
-- (void)setLeft:(CGFloat)left {
+
+- (void)setCjkt_bottom:(CGFloat)cjkt_bottom {
     CGRect frame = self.frame;
-    frame.origin.x = left;
+    frame.origin.y = cjkt_bottom - frame.size.height;
     self.frame = frame;
 }
-
-- (CGFloat)bottom {
+- (CGFloat)cjkt_bottom {
     return self.frame.size.height + self.frame.origin.y;
 }
 
-- (void)setBottom:(CGFloat)bottom {
+
+- (void)setCjkt_right:(CGFloat)cjkt_right{
     CGRect frame = self.frame;
-    frame.origin.y = bottom - frame.size.height;
+    frame.origin.x = cjkt_right - frame.size.width;
     self.frame = frame;
 }
 
-- (CGFloat)right {
+- (CGFloat)cjkt_right {
     return self.frame.size.width + self.frame.origin.x;
 }
-
-- (void)setRight:(CGFloat)right {
-    CGRect frame = self.frame;
-    frame.origin.x = right - frame.size.width;
-    self.frame = frame;
-}
-
 #pragma mark - UIView绑定的事件回调block
 
-- (QY_ViewTappedBlock)qy_viewTappedBlock {
-    return objc_getAssociatedObject(self, &qy_viewTappedBlockKey);
+- (cjkt_ViewTappedBlock)cjkt_viewTappedBlock {
+    return objc_getAssociatedObject(self, &cjkt_viewTappedBlockKey);
 }
 
-//
-
-- (void)setQy_viewTappedBlock:(QY_ViewTappedBlock)qy_viewTappedBlock {
-    objc_setAssociatedObject(self, &qy_viewTappedBlockKey, qy_viewTappedBlock, OBJC_ASSOCIATION_COPY);
+- (void)setCjkt_viewTappedBlock:(cjkt_ViewTappedBlock)cjkt_viewTappedBlock {
+    objc_setAssociatedObject(self, &cjkt_viewTappedBlock, cjkt_viewTappedBlock, OBJC_ASSOCIATION_COPY);
 }
 - (void)cjkt_addViewTapped:(void(^)(void))tappedBlock {
-    self.qy_viewTappedBlock = tappedBlock;
+    self.cjkt_viewTappedBlock = tappedBlock;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped)];
     [self addGestureRecognizer:tapGesture];
 }
 
 // 单击view
 - (void)viewTapped {
-    !self.qy_viewTappedBlock ?: self.qy_viewTappedBlock();
+    !self.cjkt_viewTappedBlock ?: self.cjkt_viewTappedBlock();
 }
 
 
