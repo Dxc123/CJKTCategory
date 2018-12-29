@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (CJKTExtension)
 #pragma mark -- 多级Push页面后返回指定控制器
+
+
 /**
  多级Push页面后返回指定控制器
  */
@@ -19,3 +21,13 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+/**
+ if(self.navigationController.viewControllers.count <= 1)
+ {
+ [self dismissViewControllerAnimated:YES completion:nil];
+ }
+ else
+ {
+ [self cjkt_popToViewController:@"ViewController" animated:YES];
+ }
+ */

@@ -59,7 +59,19 @@ NS_ASSUME_NONNULL_BEGIN
  @param corners UIRectCorner 类型
  */
 - (void)cjkt_drawCircleAngle:(CGFloat)radius corners:(UIRectCorner)corners;
+#pragma mark -- 画虚线(CAShapeLayer)
 
+/**
+  画虚线(CAShapeLayer)
+ @param Frame Frame
+ @param lineColor 虚线颜色
+ @param lineWidth 单端虚线长度
+ @param lineSpace 虚线间隔
+ */
+- (void)cjkt_drawImaginaryLineWithFrame:(CGRect)Frame
+                              lineColor:(UIColor*)lineColor
+                              lineWidth:(CGFloat)lineWidth
+                              lineSpace:(CGFloat)lineSpace;
 #pragma mark -- 获取当前View的控制器对象
 /**
  获取当前View的控制器对象

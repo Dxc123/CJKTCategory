@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C03519FC21966E6E00D1C6F0 /* UIViewController+CJKTExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C03519FB21966E6E00D1C6F0 /* UIViewController+CJKTExtension.m */; };
+		C06CB0BA21CE12280061B1EA /* CAShapeLayer+CJKTViewMask.m in Sources */ = {isa = PBXBuildFile; fileRef = C06CB0B921CE12280061B1EA /* CAShapeLayer+CJKTViewMask.m */; };
 		C09DC95E219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = C09DC95C219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m */; };
 		C09DC961219EC478005ABDFF /* UITextField+CJKTInputLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = C09DC960219EC478005ABDFF /* UITextField+CJKTInputLimit.m */; };
 		C0F85E932195C624003C6687 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F85E922195C624003C6687 /* AppDelegate.m */; };
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		C03519FA21966E6E00D1C6F0 /* UIViewController+CJKTExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CJKTExtension.h"; sourceTree = "<group>"; };
 		C03519FB21966E6E00D1C6F0 /* UIViewController+CJKTExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CJKTExtension.m"; sourceTree = "<group>"; };
+		C06CB0B821CE12280061B1EA /* CAShapeLayer+CJKTViewMask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+CJKTViewMask.h"; sourceTree = "<group>"; };
+		C06CB0B921CE12280061B1EA /* CAShapeLayer+CJKTViewMask.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+CJKTViewMask.m"; sourceTree = "<group>"; };
 		C09DC95C219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+CJKTInputLimit.m"; sourceTree = "<group>"; };
 		C09DC95D219EC2D8005ABDFF /* UITextView+CJKTInputLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+CJKTInputLimit.h"; sourceTree = "<group>"; };
 		C09DC95F219EC478005ABDFF /* UITextField+CJKTInputLimit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+CJKTInputLimit.h"; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				C09DC95C219EC2D8005ABDFF /* UITextView+CJKTInputLimit.m */,
 				C0F85EB92195CB28003C6687 /* UIButton+CJKTExtention.h */,
 				C0F85EAC2195CB28003C6687 /* UIButton+CJKTExtention.m */,
+				C06CB0B821CE12280061B1EA /* CAShapeLayer+CJKTViewMask.h */,
+				C06CB0B921CE12280061B1EA /* CAShapeLayer+CJKTViewMask.m */,
 			);
 			path = CJKTCategory;
 			sourceTree = SOURCE_ROOT;
@@ -217,6 +222,7 @@
 				C0F85E962195C624003C6687 /* ViewController.m in Sources */,
 				C0F85EC32195CB28003C6687 /* UITextView+CJKTExtention.m in Sources */,
 				C0F85EA12195C627003C6687 /* main.m in Sources */,
+				C06CB0BA21CE12280061B1EA /* CAShapeLayer+CJKTViewMask.m in Sources */,
 				C0F85EC12195CB28003C6687 /* UIImage+CJKTExtension.m in Sources */,
 				C0F85EC22195CB28003C6687 /* UIView+Gradient.m in Sources */,
 				C0F85EBE2195CB28003C6687 /* UIButton+CJKTExtention.m in Sources */,

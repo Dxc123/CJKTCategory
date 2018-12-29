@@ -164,18 +164,73 @@ static void *cjkt_viewTappedBlockKey = &cjkt_viewTappedBlockKey;
 #pragma mark --  画圆角(贝塞尔曲线)
 - (void)cjkt_drawCircleAngle:(CGFloat)radius corners:(UIRectCorner)corners {
     
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(radius, radius)];
     
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = self.bounds;
-    maskLayer.path = maskPath.CGPath;
-    
-    self.layer.mask = maskLayer;
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.frame = self.bounds;
+    shapeLayer.path = bezierPath.CGPath;
+    // layer 的 mask属性，添加蒙版
+    self.layer.mask = shapeLayer;
     
     
 }
 
+#pragma mark -- 画虚线(CAShapeLayer)
+/**
+ 画虚线(CAShapeLayer)
+ */
+- (void)cjkt_drawImaginaryLineWithFrame:(CGRect)Frame
+                              lineColor:(UIColor*)lineColor
+                              lineWidth:(CGFloat)lineWidth
+                              lineSpace:(CGFloat)lineSpace{
 
+    UIView *foot = [[UIView alloc] initWithFrame:Frame];
+    foot.backgroundColor = [UIColor clearColor];
+    //layer
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    //设置虚线的颜色
+    shapeLayer.strokeColor = lineColor.CGColor;
+    //设置虚线的高度
+    shapeLayer.lineWidth = 1.0f;
+    //   线终点的样式 默认kCALineCapButt
+    shapeLayer.lineCap =  kCALineCapButt;
+   
+    /*
+    lineDashPattern :设置边线的样式，默认为实线，该数组为一个NSNumber数组，数组中的数值依次表示虚线中，单个线的长度，和空白的长度
+     lineWidth=每条虚线的长度
+     lineSpace=每两条线的之间的间距
+     */
+    [shapeLayer setLineDashPattern:
+     [NSArray arrayWithObjects:[NSNumber numberWithInt:lineWidth],
+      [NSNumber numberWithInt:lineSpace],nil]];
+
+    
+    // Setup the path
+    CGMutablePathRef path1 = CGPathCreateMutable();
+    
+    /*
+     代表初始坐标的x，y
+     y:要和下面的y一样。
+     */
+    CGPathMoveToPoint(path1, NULL,10, 00);
+    
+    /*
+     代表坐标的x，y
+     要与上面的y大小一样，才能使平行的线，不然会画出斜线
+     */
+    CGPathAddLineToPoint(path1, NULL, Frame.size.width,00);
+    
+    //赋值给shapeLayer
+    [shapeLayer setPath:path1];
+    
+    //清除
+    CGPathRelease(path1);
+    
+    //可以把self改成任何你想要的UIView.
+    [[foot layer] addSublayer:shapeLayer];
+    [self  addSubview:foot];
+    
+}
 #pragma mark -- 获取当前View的控制器对象
 
 /** 获取当前View的控制器对象 */

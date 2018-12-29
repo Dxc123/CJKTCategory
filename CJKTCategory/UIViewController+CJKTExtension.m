@@ -18,7 +18,7 @@
             return [evaluatedObject isKindOfClass:NSClassFromString(viewControllerName)];
         }]];
         if (result.count > 0) {
-            [self.navigationController cjkt_popToViewController:result[0] animated:YES];
+            [self.navigationController popToViewController:result[0] animated:YES];
         }
     }
 }
