@@ -7,7 +7,7 @@
 //
 
 #import "UIFont+CJKTExtension.h"
-
+static NSString *systemFontName = nil;
 @implementation UIFont (CJKTExtension)
 +(UIFont *)cjkt_getCalculateSystemFontOfSize:(CGFloat)fontSize{
     
@@ -31,4 +31,12 @@
     
 }
 
+//获取系统字体名称
++ (NSString *)cjkt_systemFontName
+{
+    if (systemFontName == nil) {
+        systemFontName = [[UIFont systemFontOfSize:12] fontName];
+    }
+    return systemFontName;
+}
 @end

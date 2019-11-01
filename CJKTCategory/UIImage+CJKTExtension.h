@@ -73,6 +73,17 @@ typedef NS_ENUM(NSUInteger, GradientType) {
  */
 + (UIImage *)cjkt_imageWithIconFontName:(NSString *)iconFontName fontSize:(CGFloat)fontSize text:(NSString *)text color:(UIColor *)color;
 
+/*****************************************/
+
+
+
+
+
+
+
+
+
+
 
 
 @end
