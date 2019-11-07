@@ -60,7 +60,7 @@ typedef NS_ENUM(NSUInteger, GradientType) {
  */
 
 
-#pragma mark -- 生成渐变颜色UIImage的方法
+#pragma mark --  通过IconFont的形式创建图片
 /**
  通过IconFont的形式创建图片
  * 例如 [UIImage cjkt_imageWithIconFontName:@"iconfont" fontSize:100 text:@"\U0000e603" color:[UIColor greenColor]]
