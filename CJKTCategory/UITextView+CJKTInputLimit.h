@@ -12,5 +12,5 @@
 /**
  UITextView限制最大字符数 （<=0,没限制）
  */
-@property (assign, nonatomic)  NSInteger cjkt_maxLength;
+@property (assign, nonatomic)  NSInteger tv_maxLength;
 @end

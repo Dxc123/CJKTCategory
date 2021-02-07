@@ -23,7 +23,7 @@ static const void *QYTextViewInputLimitMaxLength = &QYTextViewInputLimitMaxLengt
 }
 
 
-- (void)cjkt_addPlaceHolder:(NSString *)placeHolder {
+- (void)tv_addPlaceHolder:(NSString *)placeHolder {
     if (![self qy_placeHolderTextView]) {
         UITextView *textView = [[UITextView alloc] initWithFrame:self.bounds];
         textView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -65,7 +65,7 @@ static const void *QYTextViewInputLimitMaxLength = &QYTextViewInputLimitMaxLengt
 
 
 #pragma mark -- UITextView设置富文本某段文字的颜色
-- (NSMutableAttributedString *)cjkt_setTextWithLinkAttribute:(NSString *)text withtextColor:(UIColor *)textcolor {
+- (NSMutableAttributedString *)tv_setTextWithLinkAttribute:(NSString *)text withtextColor:(UIColor *)textcolor {
     
     return [self subStr:text withtextColor:textcolor];
     

@@ -10,10 +10,10 @@
 #import <objc/runtime.h>
 static const void *CJKTTextFieldInputLimitMaxLength = &CJKTTextFieldInputLimitMaxLength;
 @implementation UITextField (CJKTInputLimit)
-- (NSInteger)cjkt_maxLength {
+- (NSInteger)tv_maxLength {
     return [objc_getAssociatedObject(self, CJKTTextFieldInputLimitMaxLength) integerValue];
 }
-- (void)setCjkt_maxLength:(NSInteger)maxLength {
+- (void)setTv_maxLength:(NSInteger)maxLength {
     objc_setAssociatedObject(self, CJKTTextFieldInputLimitMaxLength, @(maxLength), OBJC_ASSOCIATION_ASSIGN);
     [self addTarget:self action:@selector(cjkt_textFieldTextDidChange) forControlEvents:UIControlEventEditingChanged];
 }
@@ -25,18 +25,18 @@ static const void *CJKTTextFieldInputLimitMaxLength = &CJKTTextFieldInputLimitMa
     
     //没有高亮选择的字，则对已输入的文字进行字数统计和限制
     //在iOS7下,position对象总是不为nil
-    if ( (!position ||!selectedRange) && (self.cjkt_maxLength > 0 && toBeString.length > self.cjkt_maxLength))
+    if ( (!position ||!selectedRange) && (self.tv_maxLength > 0 && toBeString.length > self.tv_maxLength))
     {
-        NSRange rangeIndex = [toBeString rangeOfComposedCharacterSequenceAtIndex:self.cjkt_maxLength];
+        NSRange rangeIndex = [toBeString rangeOfComposedCharacterSequenceAtIndex:self.tv_maxLength];
         if (rangeIndex.length == 1)
         {
-            self.text = [toBeString substringToIndex:self.cjkt_maxLength];
+            self.text = [toBeString substringToIndex:self.tv_maxLength];
         }
         else
         {
-            NSRange rangeRange = [toBeString rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, self.cjkt_maxLength)];
+            NSRange rangeRange = [toBeString rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, self.tv_maxLength)];
             NSInteger tmpLength;
-            if (rangeRange.length > self.cjkt_maxLength) {
+            if (rangeRange.length > self.tv_maxLength) {
                 tmpLength = rangeRange.length - rangeIndex.length;
             }else{
                 tmpLength = rangeRange.length;
@@ -49,7 +49,7 @@ static const void *CJKTTextFieldInputLimitMaxLength = &CJKTTextFieldInputLimitMa
 ////////////////////////////
 
 
-- (BOOL)cjkt_isEmpty
+- (BOOL)tf_isEmpty
 
 {
     
@@ -57,23 +57,23 @@ static const void *CJKTTextFieldInputLimitMaxLength = &CJKTTextFieldInputLimitMa
     
 }
 
-- (BOOL)cjkt_validateEmail
+- (BOOL)tf_validateEmail
 
 {
     
-    return [self cjkt_validateWithRegExp: @"^[a-zA-Z0-9]{4,}@[a-z0-9A-Z]{2,}\\.[a-zA-Z]{2,}$"];
+    return [self tf_validateWithRegExp: @"^[a-zA-Z0-9]{4,}@[a-z0-9A-Z]{2,}\\.[a-zA-Z]{2,}$"];
     
 }
 
-- (BOOL)cjkt_validateAuthen
+- (BOOL)tf_validateAuthen
 
 {
     
-    return [self cjkt_validateWithRegExp: @"^\\d{4,6}$"];
+    return [self tf_validateWithRegExp: @"^\\d{4,6}$"];
     
 }
 
-- (BOOL)cjkt_validatePassword
+- (BOOL)tf_validatePassword
 
 {
     
@@ -87,7 +87,7 @@ static const void *CJKTTextFieldInputLimitMaxLength = &CJKTTextFieldInputLimitMa
     
     
     //    return [self validateWithRegExp: length] && [self validateWithRegExp: number] && [self validateWithRegExp: lower] && [self validateWithRegExp: upper];
-    return [self cjkt_validateWithRegExp: length];
+    return [self tf_validateWithRegExp: length];
 }
 
 - (BOOL)cjkt_varildSpecial
@@ -95,25 +95,25 @@ static const void *CJKTTextFieldInputLimitMaxLength = &CJKTTextFieldInputLimitMa
 {
     NSString *special = @"^\\W";
     
-    return [self cjkt_validateWithRegExp:special];
+    return [self tf_validateWithRegExp:special];
 }
 
-- (BOOL)cjkt_validatePhoneNumber
+- (BOOL)tf_validatePhoneNumber
 
 {
     
     NSString * reg = @"^1\\d{10}$";
     
-    return [self cjkt_validateWithRegExp: reg];
+    return [self tf_validateWithRegExp: reg];
     
 }
-- (BOOL)cjkt_isPassword:(NSString *)Password
+- (BOOL)tf_isPassword:(NSString *)Password
 {
     NSString *      regex = @"(^[A-Za-z0-9]{6,20}$)";
     NSPredicate *   pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pred evaluateWithObject:Password];
 }
-- (BOOL)cjkt_validateWithRegExp: (NSString *)regExp
+- (BOOL)tf_validateWithRegExp: (NSString *)regExp
 
 {
     

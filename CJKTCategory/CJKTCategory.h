@@ -3,7 +3,7 @@
 //  ReadPeaChinese
 //
 //  Created by Dxc_iOS on 2018/9/6.
-//  Copyright © 2018年 超级课堂. All rights reserved.
+//  Copyright © 2018年 CJKT. All rights reserved.
 //
 
 #ifndef CJKTCategory_h

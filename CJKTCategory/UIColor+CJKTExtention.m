@@ -3,57 +3,33 @@
 //  CJKTCategory
 //
 //  Created by Dxc_iOS on 2018/11/7.
-//  Copyright © 2018 超级课堂. All rights reserved.
+//  Copyright © 2018 CJKT. All rights reserved.
 //
 
 #import "UIColor+CJKTExtention.h"
 
 @implementation UIColor (CJKTExtention)
 
-+ (UIColor *)cjkt_colorWithRGBWithAlpha:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B alpha:(CGFloat)alpha {
-    
-    return [UIColor colorWithRed:R / 255.0f green:G / 255.0f blue:B / 255.0f alpha:alpha];
-    
-}
-
-+ (UIColor *)cjkt_colorWithRGB:(CGFloat)R green:(CGFloat)G blue:(CGFloat)B {
-    
-    return [self cjkt_colorWithRGBWithAlpha:R green:G blue:B alpha:1.0f];
-    
-}
-
 //例:@"#eef4f4"得到UIColor
-+ (UIColor *)cjkt_colorWithHexString:(NSString *) hexString
-{
++ (UIColor *)color_HexStr:(NSString *) hexStr {
     
-    return [self cjkt_colorWithHexString:hexString alpha:1.0];
+    return [self color_HexStr:hexStr alpha:1.0];
     
 }
 
-+ (UIColor *)cjkt_colorWithHexString:(NSString *)hexString alpha:(double)alpha
-{
++ (UIColor *)color_HexStr:(NSString *)hexStr alpha:(CGFloat)alpha {
     
-    if ([hexString length] == 0) {
-        
+    if ([hexStr length] == 0) {
         return [UIColor clearColor];
-        
+    }
+    if ( [hexStr caseInsensitiveCompare:@"clear"] == NSOrderedSame) {
+        return [UIColor clearColor];
     }
     
-    if ( [hexString caseInsensitiveCompare:@"clear"] == NSOrderedSame) {
-        
-        return [UIColor clearColor];
-        
-    }
-    
-    if([hexString characterAtIndex:0] == 0x0023 && [hexString length]<8)
-    {
-        
-        const char * strBuf= [hexString UTF8String];
-        
+    if([hexStr characterAtIndex:0] == 0x0023 && [hexStr length]<8) {
+        const char * strBuf= [hexStr UTF8String];
         NSInteger iColor = strtol((strBuf+1), NULL, 16);
-        
-        typedef struct colorByte
-        {
+        typedef struct colorByte {
             unsigned char b;
             unsigned char g;
             unsigned char r;
@@ -62,15 +38,37 @@
         CLRBYTE * pclr = (CLRBYTE *)&iColor;
         
         return [UIColor colorWithRed:((double)pclr->r/255.f) green:((double)pclr->g/255.f) blue:((double)pclr->b/255) alpha:alpha];
-        
     }
     
     return [UIColor blackColor];
     
 }
 
+
+
+/**
+动态颜色设置
+ @param normalColor  亮色
+ @param darkColor  暗色
+*/
++ (UIColor *)color_NormalColor:(UIColor *)normalColor darkColor:(UIColor *)darkColor {
+    if (@available(iOS 13.0, *)) {
+        UIColor *dyColor =
+            [UIColor colorWithDynamicProvider:^UIColor *_Nonnull(UITraitCollection *_Nonnull traitCollection) {
+                if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                    return darkColor;
+                } else {
+                    return normalColor;
+                }
+            }];
+        return dyColor;
+    } else {
+        return normalColor;
+    }
+}
+
 #pragma mark -- 产生一个随机色，大部分情况下用于测试
-+ (UIColor *)cjkt_randomColor{
++ (UIColor *)color_RandomColor{
     CGFloat red = ( arc4random() % 255 / 255.0 );
     CGFloat green = ( arc4random() % 255 / 255.0 );
     CGFloat blue = ( arc4random() % 255 / 255.0 );

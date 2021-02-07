@@ -3,19 +3,18 @@
 //  CJKTCategory
 //
 //  Created by Dxc_iOS on 2018/11/7.
-//  Copyright © 2018 超级课堂. All rights reserved.
+//  Copyright © 2018 CJKT. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 //UIButton分类： 图片和文字布局调整
 // 定义一个枚举（包含了四种类型的button）
-typedef enum : NSUInteger  {
-    QYImagePositionStyleLeft,    // image在左，label在右
-    QYImagePositionStyleTop,    // image在上，label在下
-    QYImagePositionStyleBottom, // image在下，label在上
-    QYImagePositionStyleRight ,  // image在右，label在左
-} QYImagePositionStyle;
-
+typedef NS_ENUM(NSUInteger, ImagePositionStyle) {
+    ImagePositionStyleLeft,    // image在左，label在右
+    ImagePositionStyleTop,    // image在上，label在下
+    ImagePositionStyleBottom, // image在下，label在上
+    ImagePositionStyleRight ,  // image在右，label在左
+};
 //点击Block
 typedef void(^clickBlock)(UIButton *button);
 
@@ -27,11 +26,6 @@ typedef void(^QYCountdownCompletionBlock)(void);
 @interface UIButton (CJKTExtention)
 
 @property (nonatomic, copy) clickBlock click;
-
-- (void)verticalImageAndTitle:(CGFloat)spacing;
-
-- (void)rightImageAndLeftTitle:(CGFloat)spacing;
-
 
 /**
  自定义响应边界 UIEdgeInsetsMake(-3, -4, -5, -6). 表示扩大
@@ -70,7 +64,7 @@ typedef void(^QYCountdownCompletionBlock)(void);
  *  @param imagePositionStyle     图片位置样式
  *  @param spacing                图片与文字之间的间距
  */
-- (void)QY_imagePositionStyle:(QYImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing;
+- (void)QY_imagePositionStyle:(ImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing;
 
 
 #pragma mark -- 设置图片与文字样式（推荐使用）
@@ -81,20 +75,20 @@ typedef void(^QYCountdownCompletionBlock)(void);
  *  @param spacing                图片与文字之间的间距
  *  @param imagePositionBlock     在此 Block 中设置按钮的图片、文字以及 contentHorizontalAlignment 属性
  */
-- (void)QY_imagePositionStyle:(QYImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing imagePositionBlock:(void (^)(UIButton *button))imagePositionBlock;
+- (void)QY_imagePositionStyle:(ImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing imagePositionBlock:(void (^)(UIButton *button))imagePositionBlock;
 
 
 
 /**
  // 推荐使用
- [_defaultBtn QY_imagePositionStyle:(QYImagePositionStyleLeft) spacing:5 imagePositionBlock:^(UIButton *button) {
+ [_defaultBtn QY_imagePositionStyle:(ImagePositionStyleLeft) spacing:5 imagePositionBlock:^(UIButton *button) {
  [button setTitle:@"间距调整" forState:(UIControlStateNormal)];
  [button setImage:[UIImage imageNamed:@"image"] forState:(UIControlStateNormal)];
  }];
  
  // right
  
- [_rightBtn QY_imagePositionStyle:(QYImagePositionStyleRight) spacing:10];
+ [_rightBtn QY_imagePositionStyle:(ImagePositionStyleRight) spacing:10];
  */
 
 

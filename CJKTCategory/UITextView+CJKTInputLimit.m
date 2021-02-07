@@ -12,10 +12,10 @@
 static const void *CJKTTextViewInputLimitMaxLength = &CJKTTextViewInputLimitMaxLength;
 
 @implementation UITextView (CJKTInputLimit)
-- (NSInteger)cjkt_maxLength {
+- (NSInteger)tv_maxLength {
     return [objc_getAssociatedObject(self, CJKTTextViewInputLimitMaxLength) integerValue];
 }
-- (void)setCjkt_maxLength:(NSInteger)maxLength {
+- (void)setTv_maxLength:(NSInteger)maxLength {
     objc_setAssociatedObject(self, CJKTTextViewInputLimitMaxLength, @(maxLength), OBJC_ASSOCIATION_ASSIGN);
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(qy_textViewTextDidChange:)
                                                 name:@"UITextViewTextDidChangeNotification" object:self];
@@ -29,18 +29,18 @@ static const void *CJKTTextViewInputLimitMaxLength = &CJKTTextViewInputLimitMaxL
     
     //没有高亮选择的字，则对已输入的文字进行字数统计和限制
     //在iOS7下,position对象总是不为nil
-    if ( (!position ||!selectedRange) && (self.cjkt_maxLength > 0 && toBeString.length > self.cjkt_maxLength))
+    if ( (!position ||!selectedRange) && (self.tv_maxLength > 0 && toBeString.length > self.tv_maxLength))
     {
-        NSRange rangeIndex = [toBeString rangeOfComposedCharacterSequenceAtIndex:self.cjkt_maxLength];
+        NSRange rangeIndex = [toBeString rangeOfComposedCharacterSequenceAtIndex:self.tv_maxLength];
         if (rangeIndex.length == 1)
         {
-            self.text = [toBeString substringToIndex:self.cjkt_maxLength];
+            self.text = [toBeString substringToIndex:self.tv_maxLength];
         }
         else
         {
-            NSRange rangeRange = [toBeString rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, self.cjkt_maxLength)];
+            NSRange rangeRange = [toBeString rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, self.tv_maxLength)];
             NSInteger tmpLength;
-            if (rangeRange.length > self.cjkt_maxLength) {
+            if (rangeRange.length > self.tv_maxLength) {
                 tmpLength = rangeRange.length - rangeIndex.length;
             }else{
                 tmpLength = rangeRange.length;

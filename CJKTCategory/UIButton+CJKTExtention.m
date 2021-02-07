@@ -3,7 +3,7 @@
 //  CJKTCategory
 //
 //  Created by Dxc_iOS on 2018/11/7.
-//  Copyright © 2018 超级课堂. All rights reserved.
+//  Copyright © 2018 CJKT. All rights reserved.
 //
 
 #import "UIButton+CJKTExtention.h"
@@ -26,40 +26,6 @@ typedef void(^QY_ButtonEventsBlock)(void);
 static void *qy_buttonEventsBlockKey = &qy_buttonEventsBlockKey;
 
 
-
-- (void)verticalImageAndTitle:(CGFloat)spacing
-{
-    
-//    self.titleLabel.backgroundColor = [UIColor greenColor];
-    CGSize imageSize = self.imageView.frame.size;
-    CGSize titleSize = self.titleLabel.frame.size;
-    CGSize textSize = [self.titleLabel.text boundingRectWithSize:titleSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.titleLabel.font} context:nil].size;
-    CGSize frameSize = CGSizeMake(ceilf(textSize.width), ceilf(textSize.height));
-    if (titleSize.width + 0.5 < frameSize.width) {
-        titleSize.width = frameSize.width;
-    }
-    CGFloat totalHeight = (imageSize.height + titleSize.height + spacing);
-    self.imageEdgeInsets = UIEdgeInsetsMake(- (totalHeight - imageSize.height), 0.0, 0.0, - titleSize.width);
-    self.titleEdgeInsets = UIEdgeInsetsMake(0, - imageSize.width, - (totalHeight - titleSize.height), 0);
-
-    
-}
-
-- (void)rightImageAndLeftTitle:(CGFloat)spacing {
-    
-    CGSize imageSize = self.imageView.frame.size;
-    CGSize titleSize = self.titleLabel.frame.size;
-    CGSize textSize = [self.titleLabel.text boundingRectWithSize:titleSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.titleLabel.font} context:nil].size;
-    CGSize frameSize = CGSizeMake(ceilf(textSize.width), ceilf(textSize.height));
-    if (titleSize.width + 0.5 < frameSize.width) {
-        titleSize.width = frameSize.width;
-    }
-
-    self.imageEdgeInsets = UIEdgeInsetsMake(0, titleSize.width, 0, - titleSize.width);;
-    self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width, 0, imageSize.width);
-
-    
-}
 
 -(void)setClick:(clickBlock)click {
     
@@ -161,8 +127,8 @@ static void *qy_buttonEventsBlockKey = &qy_buttonEventsBlockKey;
 
 
 
-- (void)QY_imagePositionStyle:(QYImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing {
-    if (imagePositionStyle == QYImagePositionStyleLeft) {
+- (void)QY_imagePositionStyle:(ImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing {
+    if (imagePositionStyle == ImagePositionStyleLeft) {
         if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft) {
             self.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
         } else if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentRight) {
@@ -171,7 +137,7 @@ static void *qy_buttonEventsBlockKey = &qy_buttonEventsBlockKey;
             self.imageEdgeInsets = UIEdgeInsetsMake(0, - 0.5 * spacing, 0, 0.5 * spacing);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, 0.5 * spacing, 0, - 0.5 * spacing);
         }
-    } else if (imagePositionStyle == QYImagePositionStyleRight) {
+    } else if (imagePositionStyle == ImagePositionStyleRight) {
         CGFloat imageW = self.imageView.image.size.width;
         CGFloat titleW = self.titleLabel.frame.size.width;
         if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft) {
@@ -186,14 +152,14 @@ static void *qy_buttonEventsBlockKey = &qy_buttonEventsBlockKey;
             self.imageEdgeInsets = UIEdgeInsetsMake(0, imageOffset, 0, - imageOffset);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, - titleOffset, 0, titleOffset);
         }
-    } else if (imagePositionStyle == QYImagePositionStyleTop) {
+    } else if (imagePositionStyle == ImagePositionStyleTop) {
         CGFloat imageW = self.imageView.frame.size.width;
         CGFloat imageH = self.imageView.frame.size.height;
         CGFloat titleIntrinsicContentSizeW = self.titleLabel.intrinsicContentSize.width;
         CGFloat titleIntrinsicContentSizeH = self.titleLabel.intrinsicContentSize.height;
         self.imageEdgeInsets = UIEdgeInsetsMake(- titleIntrinsicContentSizeH - spacing, 0, 0, - titleIntrinsicContentSizeW);
         self.titleEdgeInsets = UIEdgeInsetsMake(0, - imageW, - imageH - spacing, 0);
-    } else if (imagePositionStyle == QYImagePositionStyleBottom) {
+    } else if (imagePositionStyle == ImagePositionStyleBottom) {
         CGFloat imageW = self.imageView.frame.size.width;
         CGFloat imageH = self.imageView.frame.size.height;
         CGFloat titleIntrinsicContentSizeW = self.titleLabel.intrinsicContentSize.width;
@@ -211,11 +177,11 @@ static void *qy_buttonEventsBlockKey = &qy_buttonEventsBlockKey;
  *  @param spacing                图片与文字之间的间距
  *  @param imagePositionBlock     在此 Block 中设置按钮的图片、文字以及 contentHorizontalAlignment 属性
  */
-- (void)QY_imagePositionStyle:(QYImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing imagePositionBlock:(void (^)(UIButton *button))imagePositionBlock {
+- (void)QY_imagePositionStyle:(ImagePositionStyle)imagePositionStyle spacing:(CGFloat)spacing imagePositionBlock:(void (^)(UIButton *button))imagePositionBlock {
     
     imagePositionBlock(self);
     
-    if (imagePositionStyle == QYImagePositionStyleLeft) {
+    if (imagePositionStyle == ImagePositionStyleLeft) {
         if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft) {
             self.titleEdgeInsets = UIEdgeInsetsMake(0, spacing, 0, 0);
         } else if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentRight) {
@@ -224,7 +190,7 @@ static void *qy_buttonEventsBlockKey = &qy_buttonEventsBlockKey;
             self.imageEdgeInsets = UIEdgeInsetsMake(0, - 0.5 * spacing, 0, 0.5 * spacing);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, 0.5 * spacing, 0, - 0.5 * spacing);
         }
-    } else if (imagePositionStyle == QYImagePositionStyleRight) {
+    } else if (imagePositionStyle == ImagePositionStyleRight) {
         CGFloat imageW = self.imageView.image.size.width;
         CGFloat titleW = self.titleLabel.frame.size.width;
         if (self.contentHorizontalAlignment == UIControlContentHorizontalAlignmentLeft) {
@@ -239,14 +205,14 @@ static void *qy_buttonEventsBlockKey = &qy_buttonEventsBlockKey;
             self.imageEdgeInsets = UIEdgeInsetsMake(0, imageOffset, 0, - imageOffset);
             self.titleEdgeInsets = UIEdgeInsetsMake(0, - titleOffset, 0, titleOffset);
         }
-    } else if (imagePositionStyle == QYImagePositionStyleTop) {
+    } else if (imagePositionStyle == ImagePositionStyleTop) {
         CGFloat imageW = self.imageView.frame.size.width;
         CGFloat imageH = self.imageView.frame.size.height;
         CGFloat titleIntrinsicContentSizeW = self.titleLabel.intrinsicContentSize.width;
         CGFloat titleIntrinsicContentSizeH = self.titleLabel.intrinsicContentSize.height;
         self.imageEdgeInsets = UIEdgeInsetsMake(- titleIntrinsicContentSizeH - spacing, 0, 0, - titleIntrinsicContentSizeW);
         self.titleEdgeInsets = UIEdgeInsetsMake(0, - imageW, - imageH - spacing, 0);
-    } else if (imagePositionStyle == QYImagePositionStyleBottom) {
+    } else if (imagePositionStyle == ImagePositionStyleBottom) {
         CGFloat imageW = self.imageView.frame.size.width;
         CGFloat imageH = self.imageView.frame.size.height;
         CGFloat titleIntrinsicContentSizeW = self.titleLabel.intrinsicContentSize.width;

@@ -3,13 +3,13 @@
 //  CJKTCategory
 //
 //  Created by Dxc_iOS on 2018/11/7.
-//  Copyright © 2018 超级课堂. All rights reserved.
+//  Copyright © 2018 CJKT. All rights reserved.
 //
 
 #import "UIFont+CJKTExtension.h"
 static NSString *systemFontName = nil;
 @implementation UIFont (CJKTExtension)
-+(UIFont *)cjkt_getCalculateSystemFontOfSize:(CGFloat)fontSize{
++(UIFont *)font_getCalculateSystemFontOfSize:(CGFloat)fontSize{
     
     //根据屏幕尺寸判断的设备，然后字体设置为0.8倍
     
@@ -32,7 +32,7 @@ static NSString *systemFontName = nil;
 }
 
 //获取系统字体名称
-+ (NSString *)cjkt_systemFontName
++ (NSString *)font_getSystemFontName
 {
     if (systemFontName == nil) {
         systemFontName = [[UIFont systemFontOfSize:12] fontName];

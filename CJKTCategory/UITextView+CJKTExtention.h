@@ -15,13 +15,13 @@
 /**
  添加UITextView占位字符
  */
-- (void)cjkt_addPlaceHolder:(NSString *)placeHolder;
+- (void)tv_addPlaceHolder:(NSString *)placeHolder;
 
 
 #pragma mark -- UITextView设置富文本某段文字的颜色
 /**
  UITextView设置富文本某段文字的颜色
  */
-- (NSMutableAttributedString *)cjkt_setTextWithLinkAttribute:(NSString *)text withtextColor:(UIColor *)textcolor;
+- (NSMutableAttributedString *)tv_setTextWithLinkAttribute:(NSString *)text withtextColor:(UIColor *)textcolor;
 
 @end

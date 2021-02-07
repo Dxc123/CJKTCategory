@@ -3,7 +3,7 @@
 //  CJKTCategory
 //
 //  Created by Dxc_iOS on 2018/11/7.
-//  Copyright © 2018 超级课堂. All rights reserved.
+//  Copyright © 2018 CJKT. All rights reserved.
 //
 
 #import "UILabel+CJKTExtention.h"

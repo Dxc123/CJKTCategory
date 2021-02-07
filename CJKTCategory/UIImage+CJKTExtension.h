@@ -3,11 +3,12 @@
 //  CJKTCategory
 //
 //  Created by Dxc_iOS on 2018/11/7.
-//  Copyright © 2018 超级课堂. All rights reserved.
+//  Copyright © 2018 CJKT. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+NS_ASSUME_NONNULL_BEGIN
 /**
  原理：一种生成渐变颜色UIImage的方法，从而可以使用UIColor的api
  + (UIColor *)colorWithPatternImage:(UIImage *)image
@@ -23,17 +24,6 @@ typedef NS_ENUM(NSUInteger, GradientType) {
 
 
 @interface UIImage (CJKTExtension)
-
-+ (UIImage *)imageConvertFromColor:(UIColor *)color;
-
-+ (UIImage *)scale:(UIImage *)image size:(CGSize)size;
-
-+ (UIImage *)circleImage:(NSString *)image;
-
-- (UIImage *)circleImage;
-
-+ (UIImage *)circleImageWithName:(UIImage *)oldImage borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor size:(CGSize)originImageSize;
-
 
 
 #pragma mark --UIImage 指定宽度按比例缩放
@@ -77,13 +67,37 @@ typedef NS_ENUM(NSUInteger, GradientType) {
 
 
 
+/**
+ 根据颜色生成图片
+ @param color 颜色
+ @return 图片
+ */
++ (UIImage *)image_WithColor:(UIColor *)color;
+
+/**
+ 给图片添加文字水印
+ 
+ @param text 水印文字
+ @param point 添加位置
+ @param attributed 文字的富文本属性
+ @return 图片
+ */
++ (UIImage *)image_WithWaterMarkText:(NSString *)text textPoint:(CGPoint)point attributedString:(nullable NSDictionary *)attributed;
 
 
 
+/**
+ 给图片添加图片水印
+ 
+ @param markImage 水印图片
+ @return 图片
+ */
++ (UIImage *)image_WithWaterMarkImage:(nullable UIImage *)markImage;
 
 
-
-
-
-
+/**
+ 修正图片转向
+ */
++ (UIImage *)image_fixOrientation:(UIImage *)aImage ;
 @end
+NS_ASSUME_NONNULL_END
