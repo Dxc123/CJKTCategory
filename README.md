@@ -5,6 +5,16 @@
 [![Platform](https://img.shields.io/cocoapods/p/CJKTCategory.svg?style=flat)](https://cocoapods.org/pods/CJKTCategory)
 
 CJKTCategory：是项目中常用的一些Category
+##UIColor 分类：
+1.适配暗黑模式颜色；
+2.根据16进制数生成颜色；
+3.随机色；
+##UISearchBar分类：
+1.修改SearchBar系统自带的TextField
+
+
+
+
 ## Example
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 ## Requirements
