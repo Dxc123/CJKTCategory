@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "CJKTCategory"
-  s.version      = "0.1.8"
+  s.version      = "0.1.7"
   s.summary      = "CJKTCategory:一些常用的Category"
 
  
