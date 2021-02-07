@@ -27,8 +27,8 @@ Pod::Spec.new do |s|
 
   s.author             = { "Dxc123" => "daixingchuang@163.com" }
  
-  s.platform     = :ios, '6.0'
-  s.ios.deployment_target = '6.0'
+  s.platform     = :ios, '10.0'
+  s.ios.deployment_target = '10.0'
   s.source       = { :git => 'https://github.com/Dxc123/CJKTCategory.git', :tag => s.version.to_s }
 
   s.requires_arc = true
