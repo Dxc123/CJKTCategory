@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
  
 
   s.name         = "CJKTCategory"
-  s.version      = "0.1.7"
+  s.version      = "0.1.1"
   s.summary      = "CJKTCategory:一些常用的Category"
 
  
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
  
   s.platform     = :ios, '10.0'
   s.ios.deployment_target = '10.0'
-  s.source       = { :git => 'https://github.com/Dxc123/CJKTCategory.git', :tag => "0.1.7"}
+  s.source       = { :git => 'https://github.com/Dxc123/CJKTCategory.git', :tag => "0.1.1"}
 
   s.requires_arc = true
   s.source_files  = "CJKTCategory/**/*.{h,m}"
