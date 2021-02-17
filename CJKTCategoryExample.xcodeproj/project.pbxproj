@@ -423,7 +423,7 @@
 				C0F85EA32195C627003C6687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		C0F85EA42195C627003C6687 /* Build configuration list for PBXNativeTarget "CJKTCategoryExample" */ = {
 			isa = XCConfigurationList;
@@ -432,7 +432,7 @@
 				C0F85EA62195C627003C6687 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
