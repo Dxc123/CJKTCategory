@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
  
   s.platform     = :ios, '10.0'
   s.ios.deployment_target = '10.0'
-  s.source       = { :git => 'https://github.com/Dxc123/CJKTCategory.git', :tag => s.version.to_s }
+  s.source       = { :git => 'https://github.com/Dxc123/CJKTCategory.git', :tag => "v0.1.7"}
 
   s.requires_arc = true
   s.source_files  = "CJKTCategory/**/*.{h,m}"

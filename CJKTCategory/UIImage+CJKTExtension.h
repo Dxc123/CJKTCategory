@@ -30,14 +30,14 @@ typedef NS_ENUM(NSUInteger, GradientType) {
 /**
  UIImage指定宽度按比例缩放
  */
-+(UIImage *) cjkt_imageCompressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
++(UIImage *)image_compressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth;
 
 
 #pragma mark -- 生成渐变颜色UIImage的方法
 /**
   生成渐变颜色UIImage的方法
  */
-+ (UIImage *)cjkt_gradientColorImageFromColors:(NSArray*)colors gradientType:(GradientType)gradientType imgSize:(CGSize)imgSize;
++ (UIImage *)image_gradientColor:(NSArray*)colors gradientType:(GradientType)gradientType imgSize:(CGSize)imgSize;
 
 /**
  使用方法如下:
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSUInteger, GradientType) {
  @param color 颜色
  @return 创建的图片
  */
-+ (UIImage *)cjkt_imageWithIconFontName:(NSString *)iconFontName fontSize:(CGFloat)fontSize text:(NSString *)text color:(UIColor *)color;
++ (UIImage *)image_iconFontName:(NSString *)iconFontName fontSize:(CGFloat)fontSize text:(NSString *)text color:(UIColor *)color;
 
 /*****************************************/
 
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSUInteger, GradientType) {
  @param color 颜色
  @return 图片
  */
-+ (UIImage *)image_WithColor:(UIColor *)color;
++ (UIImage *)image_color:(UIColor *)color;
 
 /**
  给图片添加文字水印
@@ -82,7 +82,7 @@ typedef NS_ENUM(NSUInteger, GradientType) {
  @param attributed 文字的富文本属性
  @return 图片
  */
-+ (UIImage *)image_WithWaterMarkText:(NSString *)text textPoint:(CGPoint)point attributedString:(nullable NSDictionary *)attributed;
+- (UIImage *)image_waterMarkText:(NSString *)text textPoint:(CGPoint)point attributedString:( NSDictionary *)attributed;
 
 
 
@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger, GradientType) {
  @param markImage 水印图片
  @return 图片
  */
-+ (UIImage *)image_WithWaterMarkImage:(nullable UIImage *)markImage;
+- (UIImage *)image_waterMarkImage:(UIImage *)markImage;
 
 
 /**

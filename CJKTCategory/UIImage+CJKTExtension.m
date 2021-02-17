@@ -12,7 +12,7 @@
 @implementation UIImage (CJKTExtension)
 
 #pragma mark --UIImage 指定宽度按比例缩放
-+(UIImage *) cjkt_imageCompressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth{
++(UIImage *) image_compressForWidthScale:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth{
     
     UIImage *newImage = nil;
     CGSize imageSize = sourceImage.size;
@@ -70,7 +70,7 @@
 }
 
 #pragma mark -- 生成渐变颜色UIImage的方法
-+ (UIImage *)cjkt_gradientColorImageFromColors:(NSArray*)colors gradientType:(GradientType)gradientType imgSize:(CGSize)imgSize {
++ (UIImage *)image_gradientColor:(NSArray*)colors gradientType:(GradientType)gradientType imgSize:(CGSize)imgSize {
     NSMutableArray *ar = [NSMutableArray array];
     for(UIColor *c in colors) {
         [ar addObject:(id)c.CGColor];
@@ -117,7 +117,7 @@
 /**
  通过IconFont的形式创建图片
  */
-+ (UIImage *)cjkt_imageWithIconFontName:(NSString *)iconFontName fontSize:(CGFloat)fontSize text:(NSString *)text color:(UIColor *)color
++ (UIImage *)image_iconFontName:(NSString *)iconFontName fontSize:(CGFloat)fontSize text:(NSString *)text color:(UIColor *)color
 {
     
     CGFloat size = fontSize;
@@ -180,7 +180,7 @@
 }
 
 #pragma mark - 根据颜色生成图片
-+ (UIImage *)image_WithColor:(UIColor *)color {
++ (UIImage *)image_color:(UIColor *)color {
     color = nil == color ? [UIColor blackColor] : color;
     // 矩形描述
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
@@ -200,7 +200,9 @@
 }
 
 #pragma mark - 给图片添加文字水印
-- (UIImage *)image_WithWaterMarkText:(nullable NSString *)text textPoint:(CGPoint)point attributedString:(nullable NSDictionary *)attributed {
+
+
+- (UIImage *)image_waterMarkText:(NSString *)text textPoint:(CGPoint)point attributedString:( NSDictionary *)attributed {
     //1.开启上下文  尺寸 / 透明度 / 缩放
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0);
     //2.绘制图片
@@ -216,7 +218,8 @@
 }
 
 #pragma mark - 给图片添加图片水印
-- (UIImage *)image_WithWaterMarkImage:(nullable UIImage *)markImage {
+
+- (UIImage *)image_waterMarkImage:(UIImage *)markImage {
     if (!markImage) { return self; }
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0);
     [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
