@@ -13,7 +13,6 @@
 #import "NSString+CJKTExtension.h"
 
 #import "UIView+CJKTExtension.h"
-#import "UIView+Gradient.h"
 
 #import "UIViewController+CJKTExtension.h"
 
